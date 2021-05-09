@@ -1,6 +1,6 @@
 import React from "react";
 import "../App.scss";
-import { gsap, Power2 } from "gsap";
+import { gsap, Power2, TimelineLite } from "gsap";
 
 import logo from "../assets/logo-bookmark.svg";
 import menu from "../assets/icon-hamburger.svg";
@@ -9,12 +9,30 @@ import facebook from "../assets/icon-facebook.svg";
 import twitter from "../assets/icon-twitter.svg";
 
 function Nav() {
+  const tl = new TimelineLite();
+
   const showMenu = () => {
-    gsap.to(".mobile-nav-menu", 0, { css: { display: "block" } });
+    tl.to(".header", 0.4, { opacity: 0, ease: Power2.easeInOut })
+      .to(".mobile-nav-menu", 0, {
+        css: { visibility: "visible" },
+        ease: Power2.easeInOut,
+      })
+      .to(".mobile-nav-menu", 0.4, {
+        css: { opacity: 1 },
+        ease: Power2.easeInOut,
+      });
   };
 
   const hideMenu = () => {
-    gsap.to(".mobile-nav-menu", 0, { css: { display: "none" } });
+    tl.to(".mobile-nav-menu", 0.4, {
+      css: { opacity: 0 },
+      ease: Power2.easeInOut,
+    })
+      .to(".mobile-nav-menu", 0, {
+        css: { visibility: "hidden" },
+        ease: Power2.easeInOut,
+      })
+      .to(".header", 0.4, { opacity: 1, ease: Power2.easeInOut });
   };
   return (
     <div className="container">
