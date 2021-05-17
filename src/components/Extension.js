@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../App.scss";
+import { gsap, Power2, TweenMax } from "gsap";
 
 import chrome from "../assets/logo-chrome.svg";
 import firefox from "../assets/logo-firefox.svg";
 import opera from "../assets/logo-opera.svg";
 import dots from "../assets/bg-dots.svg";
+
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 function Extension() {
   const extensionCards = [
@@ -24,6 +28,20 @@ function Extension() {
       version: "46",
     },
   ];
+
+  const tl = gsap.timeline();
+
+  useEffect(() => {
+    gsap.from(".extension-card", {
+      scrollTrigger: ".extension-card",
+      duration: 1,
+      opacity: 0,
+      ease: Power2.easeInOut,
+      y: 60,
+    });
+
+    gsap.to(".extension-section", { duration: 1, opacity: 1, delay: 5 });
+  }, []);
 
   return (
     <div className="container extension-section">

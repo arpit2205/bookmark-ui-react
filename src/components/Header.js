@@ -13,8 +13,11 @@ function Header() {
   let subtitle = useRef(null);
   let btnOne = useRef(null);
   let btnTwo = useRef(null);
+  let header = useRef(null);
 
   useEffect(() => {
+    gsap.to(header, { duration: 0, opacity: 1, delay: 1 });
+
     window.screen.width > 768
       ? gsap.from(".hero-image", {
           duration: 1,
@@ -54,7 +57,7 @@ function Header() {
   }, []);
 
   return (
-    <div className="container header">
+    <div ref={(el) => (header = el)} className="container header ">
       <div className="hero-div">
         <h1 className="hero-title" ref={(el) => (title = el)}>
           A Simple Bookmark Manager

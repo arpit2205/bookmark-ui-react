@@ -41,7 +41,7 @@ function Nav() {
       css: { opacity: 1 },
       ease: Power2.easeInOut,
     });
-    gsap.to(".header", 0, { opacity: 0, delay: 0.4 });
+    gsap.to(".header", 0, { opacity: 0 });
     gsap.to(".wrapper", 0, { css: { position: "fixed" } });
   };
 
@@ -61,7 +61,7 @@ function Nav() {
       css: { visibility: "hidden" },
       ease: Power2.easeInOut,
     });
-    gsap.to(".header", 0, { opacity: 1, ease: Power2.easeInOut });
+    gsap.to(".header", 0.4, { opacity: 1, ease: Power2.easeInOut });
     gsap.to(".wrapper", 0, { css: { position: "" } });
   };
   return (

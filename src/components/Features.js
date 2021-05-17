@@ -1,10 +1,13 @@
-import React, { useState } from "react";
-import { gsap, Power2 } from "gsap";
+import React, { useState, useRef, useEffect } from "react";
+import { gsap, Power2, Power4 } from "gsap";
 import "../App.scss";
 
 import imgOne from "../assets/illustration-features-tab-1.svg";
 import imgTwo from "../assets/illustration-features-tab-2.svg";
 import imgThree from "../assets/illustration-features-tab-3.svg";
+
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 function Features() {
   const [stateID, setStateID] = useState(0);
@@ -58,6 +61,20 @@ function Features() {
     }, 200);
   };
 
+  // GSAP
+
+  let header = useRef(null);
+
+  useEffect(() => {
+    gsap.to(header, {
+      scrollTrigger: ".tabs-container",
+      duration: 1,
+      opacity: 1,
+    });
+
+    gsap.to(".features-section", { duration: 1, opacity: 1, delay: 5 });
+  }, []);
+
   return (
     <div className="container features-section">
       <div className="features-header">
@@ -100,7 +117,10 @@ function Features() {
         </div>
 
         <>
-          <div className="container header tabbed-features">
+          <div
+            ref={(el) => (header = el)}
+            className="container header tabbed-features"
+          >
             <div className="hero-image features-image">
               <img src={featuresContent[stateID].image} />
             </div>
